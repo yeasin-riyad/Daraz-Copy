@@ -1,6 +1,6 @@
 "use client";
 import { RiMenu3Fill, RiCloseLine } from "react-icons/ri";
-import { Dialog, DialogPanel } from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import Link from "next/link";
 import { navigation } from "@/constants/constants";
@@ -30,7 +30,7 @@ const MobileNavigation = () => {
                 <RiCloseLine size={24} />
               </button>
 
-              <Dialog.Title className="text-lg font-semibold mb-4 text-center">Menu</Dialog.Title>
+              <DialogTitle className="text-lg font-semibold mb-4 text-center">Menu</DialogTitle>
 
               <div className="border-b border-b-gray-400 mb-4">
                 <div className="flex flex-col gap-2 text-sm font-medium">
