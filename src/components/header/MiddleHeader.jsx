@@ -10,9 +10,9 @@ import MobileNavigation from "./MobileNavigation";
 
 const MiddleHeader = () => {
   return (
-    <div className="sticky top-0 z-50  border-b-[1px] border-b-gray-400 bg-themeColor/40">
+    <div >
       <Container
-        className={
+        className={ 
           "flex py-5 items-center gap-4 md:gap-6 lg:gap-20 justify-between"
         }
       >
@@ -24,7 +24,7 @@ const MiddleHeader = () => {
 
 
         {/* Right Section */}
-        <div className="hidden md:flex items-center gap-2 text-sm">
+        <div className="hidden  md:flex items-center gap-2 text-sm">
           <Link href={"/signin"} >
           <div className="border-2 border-gray-700 p-1.5 text-xl rounded-full">
             <LiaUser/>

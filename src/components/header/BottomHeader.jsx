@@ -5,9 +5,9 @@ import Container from './Container'
 
 const BottomHeader = () => {
   return (
-    <div className="border-b border-b-gray-400 bg-themeColor/40 py-2">
+    <div className=" border-b border-b-gray-400 bg-themeColor/40 py-2">
       <Container className="flex items-center justify-between py-1">
-        <div className="gap-2 text-xs md:text-sm font-medium flex items-center md:gap-5">
+        <div className="hidden md:flex  font-medium  items-center gap-5 text-sm">
           {navigation.map((item)=>{
                 return <Link key={item?.title} href={item?.href} className='hover:text-themeColor duration-200'>{item?.title}</Link>
 

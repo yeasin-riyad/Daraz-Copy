@@ -8,7 +8,7 @@ import Container from './header/Container';
 
 const Footer = () => {
   return (
-    <footer className="bg-themeWhite text-gray-600 py-10">
+    <footer className="bg-gray-600 text-gray-200 py-10">
       <Container className="container mx-auto px-5 md:px-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center md:text-left">
           
@@ -71,8 +71,8 @@ const Footer = () => {
 
           {/* Column 3 - Copyright */}
           <div>
-            <p className="text-gray-500 text-sm">© Daraz 2024</p>
-            <p className="mt-2 text-xs text-gray-400">
+            <p className="text-gray-200 text-sm">© Daraz 2024</p>
+            <p className="mt-2 text-xs text-gray-200">
               All rights reserved. Daraz is the leading online marketplace in South Asia, connecting millions of consumers and sellers.
             </p>
           </div>
