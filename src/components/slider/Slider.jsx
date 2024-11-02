@@ -29,7 +29,7 @@ const Slider = () => {
          
           {slider.map(slide=>(
             <SwiperSlide key={slide.id}>
-                <Link href={"/"}><Image className='h-[200px] md:h-full' src={slide.slider} alt=''/></Link>
+                <Link href={"/"}><Image className='h-[200px] md:h-[500px]' src={slide.slider} alt=''/></Link>
 
             </SwiperSlide>
           ))}

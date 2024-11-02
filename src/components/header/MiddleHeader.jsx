@@ -10,7 +10,7 @@ import MobileNavigation from "./MobileNavigation";
 
 const MiddleHeader = () => {
   return (
-    <div className="border-b-[1px] border-b-gray-400 bg-themeColor/40">
+    <div className="sticky top-0 z-50  border-b-[1px] border-b-gray-400 bg-themeColor/40">
       <Container
         className={
           "flex py-5 items-center gap-4 md:gap-6 lg:gap-20 justify-between"
