@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
@@ -5,8 +6,16 @@ import { MdOutlineLanguage } from 'react-icons/md';
 import { FiExternalLink } from 'react-icons/fi';
 import { bangladesh, myanmar, nepal, pakistan, srilanka } from '@/assets/assets';
 import Container from './header/Container';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
+     // Get the current pathname
+     const pathname = usePathname();
+
+     // Check if the current route includes '/signin'
+     if (pathname.includes('/register') || pathname.includes('/signin')) {
+       return null;
+     }
   return (
     <footer className="bg-gray-600 text-gray-200 py-10">
       <Container className="container mx-auto px-5 md:px-10">

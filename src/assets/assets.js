@@ -10,10 +10,12 @@ import bangladesh from './bangladesh.png'
 import nepal from './nepal.png'
 import srilanka from './srilanka.png'
 import myanmar from './myanmar.png'
+import paymentImage from './paymentImage.jpg'
 
 
 
-export {logo,pakistan,bangladesh,nepal,srilanka,myanmar}
+
+export {logo,pakistan,bangladesh,nepal,srilanka,myanmar,paymentImage}
 export const slider=[
     {slider:slider1,id:1},
     {slider:slider2,id:2},
