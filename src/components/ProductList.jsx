@@ -7,23 +7,33 @@ import { fetchData } from "./helpers";
 import Link from "next/link";
 import ProductPrice from "./ProductPrice";
 import AddToCartButton from "./AddToCartButton";
+import { useGetProductsQuery } from "./redux/productSlice";
+import { MdLocalDining } from "react-icons/md";
+import Loader from "./Loader";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+  const { data, error, isLoading } = useGetProductsQuery()
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const endpoint = "https://dummyjson.com/products";
-      const data = await fetchData(endpoint);
-      setProducts(data.products);
-    };
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   setProducts(data?.result?.products)
+  //   console.log(data)
+
+    
+  // }, [data]);
+
+  console.log(data)
+ 
+
+  {if(isLoading){
+    return <Loader/>
+  }}
 
   return (
+   
     <Container>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 mt-3">
-        {products.map((product) => (
+        {data?.products?.map((product) => (
           <div
             key={product.id}
             className=" flex flex-col border-2 border-gray-300 bg-white shadow-md rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105  "
