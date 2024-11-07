@@ -13,9 +13,17 @@ export const productsApi = createApi({
     getProduct:builder.query({
         query:(id)=> `api/products/${id}`
     }),
+    registerUser:builder.mutation({
+      query:(user)=>({
+        url: 'api/register',
+        method: 'POST',
+        body: user,
+      })
+
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetProductsQuery,useGetProductQuery } = productsApi;
+export const { useGetProductsQuery,useGetProductQuery,useRegisterUserMutation } = productsApi;

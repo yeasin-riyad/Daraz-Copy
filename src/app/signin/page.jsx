@@ -3,28 +3,48 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { logo } from "@/assets/assets";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation"; // Updated import
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Handle login logic here
+        try {
+            const result = await signIn("credentials", {
+                email,
+                password,
+                redirect: false,
+            });
+            
+            if (result.ok) {
+                toast.success("Login Successfully.....");
+                router.push("/");
+            } else {
+                toast.error("Invalid credentials, please try again.");
+            }
+        } catch (err) {
+            toast.error("Something went wrong. Please try again.");
+        }
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
             <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
                 {/* Logo */}
-                <div className="flex justify-center mb-6 ">
-                   <Link href={"/"}>
-                   <Image 
-                        src={logo} // Update this path to your logo
-                        alt="Website Logo" 
-                        width={80} 
-                        height={80} 
-                    /></Link>
+                <div className="flex justify-center mb-6">
+                    <Link href={"/"}>
+                        <Image 
+                            src={logo} 
+                            alt="Website Logo" 
+                            width={80} 
+                            height={80} 
+                        />
+                    </Link>
                 </div>
 
                 {/* Title */}

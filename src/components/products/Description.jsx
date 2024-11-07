@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { lazy } from 'react'
 import ProductPrice from '../ProductPrice'
 import { MdStar, MdStarHalf, MdStarBorder } from "react-icons/md"
 import { FaRegEye } from "react-icons/fa"
@@ -63,7 +63,7 @@ const Description = ({ product }) => {
 
       <AddToCartButton stock={product?.stock} />
       <div className='flex flex-col items-center justify-center gap-2 p-2  bg-gray-300 mt-5 rounded-md'>
-      <Image className="mt-4 mx-auto opacity-75" src={paymentImage} alt="Payment Options" />
+      <Image className="mt-4 mx-auto opacity-75" src={paymentImage} alt="Payment Options" loading="lazy" />
       <p>Guaranteed Same And Secure Checkout</p>
 
       </div>

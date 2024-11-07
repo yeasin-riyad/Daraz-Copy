@@ -12,17 +12,9 @@ import { MdLocalDining } from "react-icons/md";
 import Loader from "./Loader";
 
 const ProductList = () => {
-  // const [products, setProducts] = useState([]);
   const { data, error, isLoading } = useGetProductsQuery()
 
-  // useEffect(() => {
-  //   setProducts(data?.result?.products)
-  //   console.log(data)
-
-    
-  // }, [data]);
-
-  console.log(data)
+ 
  
 
   {if(isLoading){

@@ -4,15 +4,30 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { logo } from "@/assets/assets";
+import bcrypt from 'bcryptjs';
+import { useRegisterUserMutation } from "@/components/redux/productSlice";
+import toast from "react-hot-toast";
+
 
 const RegisterForm = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [registerUser] = useRegisterUserMutation();
 
-    const handleRegister = (e) => {
+
+    const handleRegister = async(e) => {
         e.preventDefault();
-        // Registration logic here (e.g., send to API)
+        try{
+            const hashedPassword = await bcrypt.hash(password, 10);
+            await registerUser({ name, email, password: hashedPassword }).unwrap();
+            toast.success("Registration successful")
+
+ 
+
+        }catch (error) {
+            toast.error('Error registering user...');
+          }
     };
 
     return (

@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/Footer";
 import ReduxProvider from "@/components/redux/provider";
+import { Toaster } from "react-hot-toast";
+import SessionProvider from "@/components/SessionProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,9 +29,12 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-        <Header/>
-        {children}
-        <Footer/>
+          <SessionProvider>
+          <Toaster position="top-center" toastOptions={{ duration: 5000 }} />
+          <Header />
+          {children}
+          <Footer />
+          </SessionProvider> 
         </ReduxProvider>
       </body>
     </html>
