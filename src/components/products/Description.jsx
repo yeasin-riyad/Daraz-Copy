@@ -61,7 +61,7 @@ const Description = ({ product }) => {
         ))}
       </div>
 
-      <AddToCartButton stock={product?.stock} />
+      <AddToCartButton product={product} stock={product?.stock} />
       <div className='flex flex-col items-center justify-center gap-2 p-2  bg-gray-300 mt-5 rounded-md'>
       <Image className="mt-4 mx-auto opacity-75" src={paymentImage} alt="Payment Options" loading="lazy" />
       <p>Guaranteed Same And Secure Checkout</p>

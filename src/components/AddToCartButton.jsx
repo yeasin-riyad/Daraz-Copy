@@ -2,10 +2,43 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useAddToCartMutation } from "./redux/productSlice";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
-const AddToCartButton = ({ stock }) => {
+const AddToCartButton = ({ stock, product }) => {
   const { data: session } = useSession();
   const router = useRouter();
+  const [addToCart] = useAddToCartMutation();
+  const [quantity, setQuantity] = useState(0);
+  console.log(quantity)
+
+  const handleAddToCart = async () => {
+    if (stock > 0) {
+      if (!session) {
+        router.push("/signin");
+      } else {
+        try {
+          const res = await addToCart({
+            id: product.id,
+            data: { userId: session.user.email, product },
+          }).unwrap();
+          
+          // Show success message
+          toast.success(res?.message);
+
+          // Calculate the total quantity for this product in the cart
+          const totalQuantity = res?.cartItems?.reduce((acc, item) => {
+            return  acc + item.quantity ;
+          }, 0);
+
+          setQuantity(totalQuantity || 0);
+        } catch (error) {
+          toast.error("Error adding item to cart: " + error?.message);
+        }
+      }
+    }
+  };
 
   return (
     <div
@@ -16,19 +49,11 @@ const AddToCartButton = ({ stock }) => {
       <button
         className="w-full"
         disabled={stock === 0}
-        onClick={() => {
-          if (stock > 0) {
-            if (!session) {
-              router.push("/signin");
-            } else {
-              // Add to cart logic here for logged-in users
-              console.log("Item added to cart!");
-            }
-          }
-        }}
+        onClick={handleAddToCart}
       >
         {stock > 0 ? "Add to Cart" : "Out of Stock"}
       </button>
+      {quantity > 0 && <p>Quantity in cart: {quantity}</p>}
     </div>
   );
 };

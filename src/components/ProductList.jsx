@@ -90,7 +90,7 @@ const ProductList = () => {
               </div>
 
               {/* Add to Cart Button */}
-              <AddToCartButton stock={product?.stock}/>
+              <AddToCartButton product={product} stock={product?.stock}/>
             </div>
           </div>
         ))}

@@ -21,9 +21,17 @@ export const productsApi = createApi({
       })
 
     }),
+    addToCart:builder.mutation({
+      query:({id,data})=>({
+        url:`api/addToCart/${id}`,
+        method:'POST',
+        body:data
+
+      })
+    })
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetProductsQuery,useGetProductQuery,useRegisterUserMutation } = productsApi;
+export const { useGetProductsQuery,useGetProductQuery,useRegisterUserMutation,useAddToCartMutation } = productsApi;

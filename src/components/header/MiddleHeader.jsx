@@ -11,7 +11,6 @@ import {  signOut, useSession } from "next-auth/react";
 
 const MiddleHeader = () => {
   const { data: session } = useSession(); 
-  console.log(session)
 
 
 
