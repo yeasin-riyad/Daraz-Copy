@@ -27,6 +27,11 @@ export const productsApi = createApi({
         method:'POST',
         body:data
 
+      }),
+    }),
+    myCartItems:builder.query({
+      query:(id)=>({
+        url:`api/myCartItems/${id}`,
       })
     })
   }),
@@ -34,4 +39,4 @@ export const productsApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetProductsQuery,useGetProductQuery,useRegisterUserMutation,useAddToCartMutation } = productsApi;
+export const {useGetProductsQuery,useGetProductQuery,useRegisterUserMutation,useAddToCartMutation,useMyCartItemsQuery} = productsApi;

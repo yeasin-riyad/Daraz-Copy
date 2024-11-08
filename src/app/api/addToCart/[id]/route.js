@@ -3,7 +3,7 @@ import { addCartCollection } from "@/components/database/db";
 
 export async function POST(req, { params }) {
   const productId = parseInt((await params).id);
-  const { userId, product } = await req.json();
+  const { userId, product,action } = await req.json();
 
   try {
     // Check if the cart item for this user and product already exists
@@ -13,6 +13,19 @@ export async function POST(req, { params }) {
     });
 
     if (existingCartItem) {
+      // Decrement Quantity..........
+      if (action === "decrement") {
+        // Code to decrease quantity in the cart
+        // Example:
+          await addCartCollection.updateOne(
+          { userId, "product.id": productId },
+          { $inc: { quantity: -1 } }
+        );
+        
+        return NextResponse.json({ message: "Quantity decreased" }, { status: 200 });
+      }
+
+
       // Increment quantity if item already exists in cart
       await addCartCollection.updateOne(
         { userId, "product.id": productId },
