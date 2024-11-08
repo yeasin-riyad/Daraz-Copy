@@ -48,7 +48,6 @@ export async function POST(req, { params }) {
         message: existingCartItem
           ? "Product quantity updated in cart"
           : "Product added to cart successfully",
-        cartItems: updatedCartItems,
       },
       { status: 200 }
     );

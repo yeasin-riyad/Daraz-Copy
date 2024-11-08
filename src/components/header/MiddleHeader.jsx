@@ -9,11 +9,14 @@ import HeaderIcons from "./HeaderIcons";
 import MobileNavigation from "./MobileNavigation";
 import {  signOut, useSession } from "next-auth/react";
 
+
 const MiddleHeader = () => {
   const { data: session } = useSession(); 
+ 
 
 
 
+// if(isLoading) return <Loader/>
 
 
   return (
