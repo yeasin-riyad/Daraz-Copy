@@ -6,12 +6,13 @@ import { useAddToCartMutation, useMyCartItemsQuery } from "./redux/productSlice"
 import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
 
-const AddToCartButton = ({ stock, product }) => {
+const AddToCartButton = ({product, stock  }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [addToCart] = useAddToCartMutation();
   const { data, refetch } = useMyCartItemsQuery(session?.user?.email);
   const [quantity, setQuantity] = useState(0);
+  // console.log(product?.id)
 
   // Initialize quantity based on the fetched cart data
   useEffect(() => {
@@ -19,7 +20,7 @@ const AddToCartButton = ({ stock, product }) => {
       const productInCart = data.find(item => item.product.id === product.id);
       setQuantity(productInCart ? productInCart.quantity : 0);
     }
-  }, [data, product.id]);
+  }, [data, product?.id]);
 
   // Handle Add to Cart or increase quantity
   const handleAddToCart = async () => {
@@ -29,7 +30,7 @@ const AddToCartButton = ({ stock, product }) => {
       try {
         if (quantity < stock) {
           const res = await addToCart({
-            id: product.id,
+            id: product?.id,
             data: { userId: session.user.email, product },
           }).unwrap();
           toast.success(res?.message || "Item added to cart");
@@ -48,7 +49,7 @@ const AddToCartButton = ({ stock, product }) => {
     if (quantity > 1) {
       try {
         const res = await addToCart({
-          id: product.id,
+          id: product?.id,
           data: { userId: session.user.email, product, action: "decrement" },
         }).unwrap();
         toast.success("Quantity decreased");
