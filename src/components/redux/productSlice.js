@@ -29,14 +29,29 @@ export const productsApi = createApi({
 
       }),
     }),
+    addToFavorite:builder.mutation({
+      query:(data)=>({
+        url:`api/favorite`,
+        method:'POST',
+        body:data
+
+      }),
+    }),
     myCartItems:builder.query({
       query:(id)=>({
         url:`api/myCartItems/${id}`,
       })
+    }),
+    myfavoriteItems:builder.query({
+      query:(email)=>({
+        url:`api/favorite/${email}`,
+        
+      })
+
     })
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const {useGetProductsQuery,useGetProductQuery,useRegisterUserMutation,useAddToCartMutation,useMyCartItemsQuery} = productsApi;
+export const {useGetProductsQuery,useGetProductQuery,useRegisterUserMutation,useAddToCartMutation,useMyCartItemsQuery,useAddToFavoriteMutation,useMyfavoriteItemsQuery} = productsApi;
