@@ -13,7 +13,7 @@ const client = new MongoClient(uri, {
 
 
 await client.connect();
- console.log("Connected to MongoDB and created collections in the 'Daraz' database!");
+//  console.log("Connected to MongoDB and created collections in the 'Daraz' database!");
 
 const db = client.db("Daraz");
 export const productsCollection =db.collection("Products");
