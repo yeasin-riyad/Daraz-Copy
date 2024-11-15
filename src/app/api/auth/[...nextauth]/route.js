@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs"; 
 import { usersCollection } from "@/components/database/db";
+import GoogleProvider from "next-auth/providers/google";
+
 export const authOptions= {
   secret:process.env.NEXTAUTH_SECRET,
   session: {
@@ -14,6 +16,7 @@ export const authOptions= {
         email: {  },
         password: { },
       },
+     
       async authorize(credentials) {
         const { email, password } = credentials ;
         
@@ -30,6 +33,7 @@ export const authOptions= {
         return currentUser;
       }
     }),
+ 
   ],
   callbacks: {
     async jwt({ token, user }) {
